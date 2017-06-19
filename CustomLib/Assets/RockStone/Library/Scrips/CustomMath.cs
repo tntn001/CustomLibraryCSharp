@@ -8,7 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CustomMath
+namespace RockStone.CustomMath
 {
     public struct BezierCurve
     {
