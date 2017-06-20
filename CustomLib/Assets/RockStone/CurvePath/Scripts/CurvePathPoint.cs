@@ -14,10 +14,10 @@ namespace RockStone
         [SerializeField]
         private int m_nCurrentIndex;
 
-        [HideInInspector]
+        //[HideInInspector]
         [SerializeField]
         private CurvePathPoint m_CurvePrevious;
-        [HideInInspector]
+        //[HideInInspector]
         [SerializeField]
         private CurvePathPoint m_CurveNext;
 

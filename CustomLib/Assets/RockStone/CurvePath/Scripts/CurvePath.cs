@@ -34,7 +34,7 @@ namespace RockStone
         private void AddNewPoint()
         {
             CurvePathPoint curve = m_NewPointHasBeenCreated.GetComponent<CurvePathPoint>();
-            curve.SetValue(m_ListMainPoints.Count);
+            curve.SetValue(m_ListMainPoints.Count, m_ListMainPoints[m_ListMainPoints.Count - 1]);
             m_ListMainPoints.Add(curve);
             m_ListMainPoints[m_ListMainPoints.Count - 1].OnDelete += CallBackOnDeletePoint;
             m_NewPointHasBeenCreated = null;
