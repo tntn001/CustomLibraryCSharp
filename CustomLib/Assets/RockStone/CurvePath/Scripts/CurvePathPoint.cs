@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 namespace RockStone
 {
+#if UNITY_EDITOR
     [ExecuteInEditMode]
     public class CurvePathPoint : MonoBehaviour
     {
@@ -12,22 +13,27 @@ namespace RockStone
 
         [HideInInspector]
         [SerializeField]
-        private int m_nCurrentIndex;
+        private int m_nCurrentIndex;     
 
-        //[HideInInspector]
-        [SerializeField]
-        private CurvePathPoint m_CurvePrevious;
-        //[HideInInspector]
-        [SerializeField]
-        private CurvePathPoint m_CurveNext;
-
-        public void SetValue(int index, CurvePathPoint previous = null, CurvePathPoint next = null)
+        private Color m_color;
+        public Color PointColor
         {
-            m_nCurrentIndex = index;
-            m_CurvePrevious = previous;
-            m_CurveNext = next;
+            get { return m_color; }
+            set { m_color = value; }
         }
 
+        private float m_size;
+        public float PointSize
+        {
+            get { return m_size; }
+            set { m_size = value; }
+        }
+
+        public void SetValue(int index)
+        {
+            m_nCurrentIndex = index;
+        }
+               
         private void OnDestroy()
         {
             if(OnDelete != null)
@@ -41,8 +47,14 @@ namespace RockStone
             if(Application.isEditor && !Application.isPlaying)
             {
                 
-                
             }
         }
+        
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = m_color;
+            Gizmos.DrawSphere(transform.position, m_size);            
+        }
     }
+#endif
 }

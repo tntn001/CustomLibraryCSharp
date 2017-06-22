@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Reflection;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -11,6 +13,6 @@ public class CurverPathMenu
         GameObject go = new GameObject("Curver Path", typeof(RockStone.CurvePath));
         go.transform.parent = null;
         go.transform.position = Vector3.zero;
-        Selection.activeObject =(Object)go;        
+        Selection.activeObject =(UnityEngine.Object)go;
     }
 }

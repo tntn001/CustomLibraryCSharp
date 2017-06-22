@@ -170,4 +170,114 @@ namespace RockStone.CustomMath
 
         #endregion
     }
+
+    public struct CustomVector
+    {
+        /// <summary>
+        /// Return real angle between 2 vector2 (Have - or + angle)
+        /// </summary>
+        /// <param name="vt1"></param>
+        /// <param name="vt2"></param>
+        /// <returns></returns>
+        public static float RealAngleVector2(Vector2 vt1, Vector2 vt2)
+        {
+            int Dir = 0;
+            vt1.Normalize();
+            vt2.Normalize();
+
+            var angle = Vector2.Angle(vt1, vt2);
+
+            if (vt1.x >= 0 && vt1.y >= 0)
+            {
+                if (vt2.x >= 0 && vt2.y >= 0)
+                {
+                    Dir = ((vt2.y - vt1.y) > 0) ? -1 : 1;
+                }
+                else if (vt2.x < 0 && vt2.y >= 0)
+                {
+                    Dir = -1;
+                }
+                else if (vt2.x >= 0 && vt2.y < 0)
+                {
+                    Dir = 1;
+                }
+                else
+                {
+                    if (Mathf.Abs(vt2.x) <= Mathf.Abs(vt1.x))
+                        Dir = 1;
+                    else
+                        Dir = -1;
+                }
+            }
+            else if (vt1.x >= 0 && vt1.y < 0)
+            {
+                if (vt2.x >= 0 && vt2.y < 0)
+                {
+                    Dir = ((vt2.y - vt1.y) > 0) ? -1 : 1;
+                }
+                else if (vt2.x < 0 && vt2.y < 0)
+                {
+                    Dir = 1;
+                }
+                else if (vt2.x >= 0 && vt2.y >= 0)
+                {
+                    Dir = -1;
+                }
+                else
+                {
+                    if (Mathf.Abs(vt2.x) <= Mathf.Abs(vt1.x))
+                        Dir = -1;
+                    else
+                        Dir = 1;
+                }
+
+            }
+            else if (vt1.x < 0 && vt1.y < 0)
+            {
+                if (vt2.x < 0 && vt2.y < 0)
+                {
+                    Dir = ((vt2.y - vt1.y) > 0) ? 1 : -1;
+                }
+                else if (vt2.x >= 0 && vt2.y < 0)
+                {
+                    Dir = -1;
+                }
+                else if (vt2.x < 0 && vt2.y >= 0)
+                {
+                    Dir = 1;
+                }
+                else
+                {
+                    if (Mathf.Abs(vt2.x) <= Mathf.Abs(vt1.x))
+                        Dir = 1;
+                    else
+                        Dir = -1;
+                }
+            }
+            else
+            {
+                if (vt2.x < 0 && vt2.y >= 0)
+                {
+                    Dir = ((vt2.y - vt1.y) >= 0) ? 1 : -1;
+                }
+                else if (vt2.x < 0 && vt2.y < 0)
+                {
+                    Dir = -1;
+                }
+                else if (vt2.x >= 0 && vt2.y >= 0)
+                {
+                    Dir = 1;
+                }
+                else
+                {
+                    if (Mathf.Abs(vt2.x) <= Mathf.Abs(vt1.x))
+                        Dir = -1;
+                    else
+                        Dir = 1;
+                }
+
+            }
+            return Dir * angle;
+        }
+    }
 }
